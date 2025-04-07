@@ -1,18 +1,65 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Money Tracker Web App</title>
-</head>
-<body>
+document.getElementById('add-btn').addEventListener('click', function() {
+    const category = document.getElementById('category-search').value.trim();
+    const amount = document.getElementById('amount-input').value.trim();
+    const date = document.getElementById('date-input').value;
 
-    <h1>Welcome to the Money Tracker Web App</h1>
-    <p>This is the home page. Click below to go to the About Us page.</p>
-    <p><a href="/about">About Us</a></p>
+    // Basic validation to ensure all fields are filled
+    if (category === '' || amount === '' || date === '') {
+        alert('Please fill in all fields!');
+        return;
+    }
 
-    <script src="script.js"></script>
-</body>
-</html>
+    // Create a new row for the expense table
+    const tableBody = document.getElementById('expense-table-body');
+    const newRow = document.createElement('tr');
 
+    // Create table cells for each data item
+    const categoryCell = document.createElement('td');
+    categoryCell.textContent = category;
+
+    const amountCell = document.createElement('td');
+    amountCell.textContent = amount;
+
+    const dateCell = document.createElement('td');
+    dateCell.textContent = date;
+
+    const deleteCell = document.createElement('td');
+    const deleteButton = document.createElement('button');
+    deleteButton.textContent = 'Delete';
+    deleteButton.addEventListener('click', function() {
+        tableBody.removeChild(newRow);
+        updateTotal();
+    });
+
+    deleteCell.appendChild(deleteButton);
+    
+    // Append cells to the new row
+    newRow.appendChild(categoryCell);
+    newRow.appendChild(amountCell);
+    newRow.appendChild(dateCell);
+    newRow.appendChild(deleteCell);
+
+    // Append the new row to the table
+    tableBody.appendChild(newRow);
+
+    // Update total after adding the new expense
+    updateTotal();
+
+    // Clear inputs
+    document.getElementById('category-search').value = '';
+    document.getElementById('amount-input').value = '';
+    document.getElementById('date-input').value = '';
+});
+
+// Function to update the total amount
+function updateTotal() {
+    const rows = document.querySelectorAll('#expense-table-body tr');
+    let total = 0;
+
+    rows.forEach(row => {
+        const amountCell = row.querySelectorAll('td')[1];
+        total += parseFloat(amountCell.textContent);
+    });
+
+    document.getElementById('total-amount').textContent = total.toFixed(2);
+}
