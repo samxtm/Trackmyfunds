@@ -5,6 +5,59 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TrackMyFunds - Money Tracker Web App</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Styling for the "About Us" button */
+        .about-us-link {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        .about-us-link:hover {
+            background-color: #575757;
+        }
+
+        /* Styling for the "Go Back" button on the About Us page */
+        .go-back-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        .go-back-btn:hover {
+            background-color: #575757;
+        }
+
+        /* Styling for the About Us content */
+        #about-us-section {
+            display: none;
+            padding: 20px;
+            background-color: #f4f4f4;
+            margin-top: 20px;
+            border-radius: 8px;
+        }
+
+        #about-us-section h2 {
+            color: #333;
+            font-size: 24px;
+        }
+
+        #about-us-section p {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #555;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -56,55 +109,36 @@
     </footer>
 
     <script src="script.js"></script>
-    
-    <!--below section is for about-->
 
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us - TrackMyFunds</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <header>
-        <h1>TrackMyFunds</h1>
-        <p>Track your money and manage expenses easily.</p>
-    </header>
+    <!-- About Us Button on the bottom right -->
+    <a href="#about-us-section" class="about-us-link">About Us</a>
 
-    <div class="about-us-section">
+    <!-- Below is the About Us Section, initially hidden -->
+    <div id="about-us-section">
         <h2>About Us</h2>
-        <p>Welcome to TrackMyFunds! We are dedicated to helping individuals and businesses easily manage their finances. Our app allows you to track your expenses, categorize them, and get an overview of your spending habits—all in one simple platform.</p>
-        
-        <h3>Our Mission</h3>
-        <p>At TrackMyFunds, we aim to provide users with an easy-to-use tool that makes managing finances simple and efficient. Whether you're tracking personal spending or business expenses, our app is designed to give you full control over your financial data.</p>
-        
-        <h3>Why Choose Us?</h3>
-        <ul>
-            <li>Simple and intuitive interface</li>
-            <li>Real-time tracking of your expenses</li>
-            <li>Flexible categorization for better insights</li>
-            <li>Safe and secure data storage</li>
-        </ul>
-
-        <h3>Meet the Creator</h3>
-        <p>TrackMyFunds was created by <strong>Sameerraj Cheela</strong>, a passionate developer and financial enthusiast who believes in making financial management easier for everyone. Sameerraj designed and developed this app to help individuals take control of their spending and achieve better financial management.</p>
-
-        <h3>Contact Us</h3>
-        <p>If you have any questions or feedback, feel free to reach out!</p>
-        <ul>
-            <li>Email: <a href="mailto:support@trackmyfunds.com">support@trackmyfunds.com</a></li>
-            <li>Phone: +1 (123) 456-7890</li>
-        </ul>
+        <p>Welcome to TrackMyFunds! Our mission is to make personal finance management easier for everyone. Whether you're tracking daily expenses or managing larger budgets, we provide a simple interface to keep you on track.</p>
+        <p>This web app was created by <strong>Sameerraj Cheela</strong> with the goal of helping people manage their money more effectively. With TrackMyFunds, you can log your expenses, track your spending habits, and visualize your financial progress.</p>
+        <p>We believe that financial literacy and ease of tracking are crucial to achieving financial stability, and this app is a small step in that direction.</p>
+        <a href="javascript:void(0)" onclick="goBack()" class="go-back-btn">Go Back</a>
     </div>
 
-    <footer>
-        <p>This site is open source. Improve this page.</p>
-    </footer>
+    <script>
+        // Function to show the About Us section
+        document.querySelector('.about-us-link').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.querySelector('.input-section').style.display = 'none';
+            document.querySelector('.expenses-list').style.display = 'none';
+            document.querySelector('footer').style.display = 'none';
+            document.querySelector('#about-us-section').style.display = 'block';
+        });
 
-    <script src="script.js"></script>
+        // Function to go back to the previous page content
+        function goBack() {
+            document.querySelector('.input-section').style.display = 'block';
+            document.querySelector('.expenses-list').style.display = 'block';
+            document.querySelector('footer').style.display = 'block';
+            document.querySelector('#about-us-section').style.display = 'none';
+        }
+    </script>
 </body>
 </html>
